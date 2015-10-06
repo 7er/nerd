@@ -30,13 +30,13 @@ defmodule Nerd.EntryController do
 
   def show(conn, %{"list_id" => list_id, "id" => id}) do
     entry = Repo.get!(Entry, id)
-    render(conn, "show.html", entry: entry)
+    render(conn, "show.html", list_id: list_id, entry: entry)
   end
 
   def edit(conn, %{"list_id" => list_id, "id" => id}) do
     entry = Repo.get!(Entry, id)
     changeset = Entry.changeset(entry)
-    render(conn, "edit.html", entry: entry, changeset: changeset)
+    render(conn, "edit.html", list_id: list_id, entry: entry, changeset: changeset)
   end
 
   def update(conn, %{"list_id" => list_id, "id" => id, "entry" => entry_params}) do
@@ -47,9 +47,9 @@ defmodule Nerd.EntryController do
       {:ok, entry} ->
         conn
         |> put_flash(:info, "Entry updated successfully.")
-        |> redirect(to: list_entry_path(conn, :show, entry, list_id: list_id))
+        |> redirect(to: list_entry_path(conn, :show, list_id, entry))
       {:error, changeset} ->
-        render(conn, "edit.html", entry: entry, changeset: changeset)
+        render(conn, "edit.html", list_id: list_id, entry: entry, changeset: changeset)
     end
   end
 
