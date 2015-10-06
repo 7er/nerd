@@ -15,7 +15,7 @@ defmodule Nerd.EntryController do
     render(conn, "new.html", list_id: list_id, changeset: changeset)
   end
 
-  def create(conn, %{"entry" => entry_params, "list_id" => list_id}) do
+  def create(conn, %{"list_id" => list_id, "entry" => entry_params}) do
     changeset = Entry.changeset(%Entry{}, entry_params)
 
     case Repo.insert(changeset) do
