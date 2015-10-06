@@ -1,14 +1,14 @@
-defmodule Nerd.List do
+defmodule Nerd.Entry do
   use Nerd.Web, :model
 
-  schema "lists" do
+  schema "entries" do
     field :text, :string
+    belongs_to :list, Nerd.List
 
-    has_many :entries, Nerd.Entry
     timestamps
   end
 
-  @required_fields ~w(text)
+  @required_fields ~w(text list_id)
   @optional_fields ~w()
 
   @doc """

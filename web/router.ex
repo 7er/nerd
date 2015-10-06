@@ -17,8 +17,13 @@ defmodule Nerd.Router do
     pipe_through :browser # Use the default browser stack
 
     get "/", PageController, :index
+   
 
-    resources "/lists", ListController
+
+    resources "/lists", ListController do
+      resources "/entries", EntryController
+    end
+    
   end
 
   # Other scopes may use custom stacks.
