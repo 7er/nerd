@@ -14,5 +14,5 @@
 
 </ul>
 
-<%= #link "Edit", to: entry_path(@conn, :edit, @entry) %>
-<%= #link "Back", to: entry_path(@conn, :index) %>
+<%= #link "Edit", to: list_entry_path(@conn, :edit, @entry, list_id: @list_id) %>
+<%= #link "Back", to: list_entry_path(@conn, :index, list_id: @list_id) %>

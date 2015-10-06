@@ -16,13 +16,13 @@
       <td><%= entry.list_id %></td>
 
       <td class="text-right">
-        <%= #link "Show", to: entry_path(@conn, :show, entry), class: "btn btn-default btn-xs" %>
-        <%= #link "Edit", to: entry_path(@conn, :edit, entry), class: "btn btn-default btn-xs" %>
-        <%= #link "Delete", to: entry_path(@conn, :delete, entry), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
+        <%= link "Show", to: list_entry_path(@conn, :show, @list_id, entry), class: "btn btn-default btn-xs" %>
+        <%= link "Edit", to: list_entry_path(@conn, :edit, @list_id, entry), class: "btn btn-default btn-xs" %>
+        <%= link "Delete", to: list_entry_path(@conn, :delete, @list_id, entry), method: :delete, data: [confirm: "Are you sure?"], class: "btn btn-danger btn-xs" %>
       </td>
     </tr>
 <% end %>
   </tbody>
 </table>
 
-<%= #link "New entry", to: entry_path(@conn, :new) %>
+<%= link "New entry", to: list_entry_path(@conn, :new,  @list_id) %>

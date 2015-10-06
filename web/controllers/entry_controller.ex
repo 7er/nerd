@@ -5,41 +5,41 @@ defmodule Nerd.EntryController do
 
   plug :scrub_params, "entry" when action in [:create, :update]
 
-  def index(conn, _params) do
+  def index(conn, %{"list_id" => list_id}) do
     entries = Repo.all(Entry)
-    render(conn, "index.html", entries: entries)
+    render(conn, "index.html", list_id: list_id, entries: entries)
   end
 
-  def new(conn, _params) do
+  def new(conn, %{"list_id" => list_id}) do
     changeset = Entry.changeset(%Entry{})
-    render(conn, "new.html", changeset: changeset)
+    render(conn, "new.html", list_id: list_id, changeset: changeset)
   end
 
-  def create(conn, %{"entry" => entry_params}) do
+  def create(conn, %{"entry" => entry_params, "list_id" => list_id}) do
     changeset = Entry.changeset(%Entry{}, entry_params)
 
     case Repo.insert(changeset) do
       {:ok, _entry} ->
         conn
         |> put_flash(:info, "Entry created successfully.")
-        |> redirect(to: "entry_path(conn, :index)")
+        |> redirect(to: list_entry_path(conn, :index, list_id))
       {:error, changeset} ->
-        render(conn, "new.html", changeset: changeset)
+        render(conn, "new.html", list_id, changeset: changeset)
     end
   end
 
-  def show(conn, %{"id" => id}) do
+  def show(conn, %{"list_id" => list_id, "id" => id}) do
     entry = Repo.get!(Entry, id)
     render(conn, "show.html", entry: entry)
   end
 
-  def edit(conn, %{"id" => id}) do
+  def edit(conn, %{"list_id" => list_id, "id" => id}) do
     entry = Repo.get!(Entry, id)
     changeset = Entry.changeset(entry)
     render(conn, "edit.html", entry: entry, changeset: changeset)
   end
 
-  def update(conn, %{"id" => id, "entry" => entry_params}) do
+  def update(conn, %{"list_id" => list_id, "id" => id, "entry" => entry_params}) do
     entry = Repo.get!(Entry, id)
     changeset = Entry.changeset(entry, entry_params)
 
@@ -47,13 +47,13 @@ defmodule Nerd.EntryController do
       {:ok, entry} ->
         conn
         |> put_flash(:info, "Entry updated successfully.")
-        |> redirect(to: "entry_path(conn, :show, entry)")
+        |> redirect(to: list_entry_path(conn, :show, entry, list_id: list_id))
       {:error, changeset} ->
         render(conn, "edit.html", entry: entry, changeset: changeset)
     end
   end
 
-  def delete(conn, %{"id" => id}) do
+  def delete(conn, %{"list_id" => list_id, "id" => id}) do
     entry = Repo.get!(Entry, id)
 
     # Here we use delete! (with a bang) because we expect
@@ -62,6 +62,6 @@ defmodule Nerd.EntryController do
 
     conn
     |> put_flash(:info, "Entry deleted successfully.")
-    |> redirect(to: "entry_path(conn, :index)")
+    |> redirect(to: list_entry_path(conn, :index, list_id))
   end
 end

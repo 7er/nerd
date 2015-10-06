@@ -1,6 +1,6 @@
 <h2>New entry</h2>
 
-<%= #render "form.html", changeset: @changeset,
-                     # action: entry_path(@conn, :create) %>
+<%= render "form.html", changeset: @changeset, list_id: @list_id, 
+    action: list_entry_path(@conn, :create, @list_id) %>
 
-<%= #link "Back", to: entry_path(@conn, :index) %>
+<%= link "Back", to: list_entry_path(@conn, :index, @list_id) %>

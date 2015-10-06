@@ -1,6 +1,6 @@
 <h2>Edit entry</h2>
 
-<%= #render "form.html", changeset: @changeset, action: entry_path(@conn, :update, @entry, nil)
-    %>
+<%= render "form.html", changeset: @changeset,
+    action: list_entry_path(@conn, :update, @entry, list_id: @list_id) %>
 
-<%= #link "Back", to: entry_path(@conn, :index, nil) %>
+<%= link "Back", to: list_entry_path(@conn, :index, list_id: @list_id) %>
