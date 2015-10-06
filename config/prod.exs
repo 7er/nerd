@@ -22,7 +22,7 @@ config :nerd, Nerd.Endpoint,
 config :logger, level: :info
 
 
-config :hello_phoenix, HelloPhoenix.Repo,
+config :nerd, Nerd.Repo,
   adapter: Ecto.Adapters.Postgres,
   url: System.get_env("DATABASE_URL"),
   pool_size: 20
