@@ -25,14 +25,13 @@ defmodule Nerd.EntryControllerTest do
 
   test "creates resource and redirects when data is valid", %{conn: conn, list: list} do
     path = list_entry_path(conn, :create, list)
-    IO.puts(path)
-    conn = post conn, path, entry: @valid_attrs
+    conn = post conn, path, entry: Dict.put(@valid_attrs, :list_id, list.id)
     assert redirected_to(conn) == list_entry_path(conn, :index, list)
     assert Repo.get_by(Entry, @valid_attrs)
   end
 
   test "does not create resource and renders errors when data is invalid", %{conn: conn, list: list} do
-    conn = post conn, list_entry_path(conn, :create, list), entry: @invalid_attrs
+    conn = post conn, list_entry_path(conn, :create, list), entry: Dict.put(@invalid_attrs, :list_id, list.id)
     assert html_response(conn, 200) =~ "New entry"
   end
 
@@ -62,6 +61,7 @@ defmodule Nerd.EntryControllerTest do
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn, list: list} do
+    IO.puts "What"
     entry = Repo.insert! %Entry{}
     conn = put conn, list_entry_path(conn, :update, list, entry), entry: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit entry"

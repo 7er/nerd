@@ -23,7 +23,6 @@ defmodule Nerd.Router do
     resources "/lists", ListController do
       resources "/entries", EntryController
     end
-    
   end
 
   # Other scopes may use custom stacks.
