@@ -1,5 +1,12 @@
 language: elixir
 elixir:
-  - 1.1.0
+- 1.1.0
 otp_release:
-  - 18.0
+- 18.0
+deploy:
+  provider: heroku
+  api_key:
+    secure: ZPT4/wNmPYxhklHqZf8A/KgNAmewT1BuqsobaJL1F9N/+RSLYaUhBKHBnNB5O9Jv7qCarD7xZtvu6gdZ2epa3fiSVe9f6hEM2/39WBUFxBv3zAhEAkY37tn1Awvo0AjDOjfnOEwbRFYx7uRMhZgWqgV8dpNwwmEzwDKbfrkMP0yurAJloJih5H6NqaQQ3p/7YgVRI1s+XtkfNRT27PXXKsKfTG6Ha3u7TEJGbZQVAnslc3yyrsWSnPJ9hKwkISZSn8Q0NuzbmwAWQrDvUiX1y7TlSfv2z+WiV+PlDrUGDyC80prdkEoPkDkZF35jaLFtJX3GmnFEwGUmlq7E1nUFOhyQsbsddElZPqN2TMCrfn09ThjatI6Si7It7RFIw3IxGmBZAO0ARO05/JxwsxTpIcPsoeMfNvXpMJRDJeRrk4f4VE2H/Xvl2tRmdYflNvg3aXKk/67cONt+O74uhs3u77qCdSWGK8GNyGT88/8vcKQ0TtDUDAlWcrYo4mR1317ICsSx5/nQLJ3m9m3sGqLGZeqoSjnTWxj3Xy1VmH1tVlzj7SCIRDQHuQ/HEDCU9NB22X71FWPvbZXoWfC5jWiQSv7sGshbuecbNS2LbNfw0Q3g3le57aPCbFEWW/X17TRT1vduuHebq2gjZ5Sj3hmCwx5ZDkgfk75hlTxrdExx4N0=
+  app: shrouded-bastion-1240
+  on:
+    repo: 7er/nerd
