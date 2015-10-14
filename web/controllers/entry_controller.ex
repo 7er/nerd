@@ -23,7 +23,7 @@ defmodule Nerd.EntryController do
         |> put_flash(:info, "Entry created successfully.")
         |> redirect(to: list_entry_path(conn, :index, list_id))
       {:error, changeset} ->
-        render(conn, "new.html", list_id, changeset: changeset)
+        render(conn, "new.html", list_id: list_id, changeset: changeset)
     end
   end
 

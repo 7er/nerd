@@ -61,7 +61,7 @@ defmodule Nerd.EntryControllerTest do
   end
 
   test "does not update chosen resource and renders errors when data is invalid", %{conn: conn, list: list} do
-    entry = Repo.insert! %Entry{list_id: list.id, text: "Let it bleed"}
+    entry = Repo.insert! %Entry{list_id: list.id}
     conn = put conn, list_entry_path(conn, :update, list, entry), entry: @invalid_attrs
     assert html_response(conn, 200) =~ "Edit entry"
   end
