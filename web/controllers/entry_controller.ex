@@ -17,7 +17,6 @@ defmodule Nerd.EntryController do
 
   def create(conn, %{"list_id" => list_id, "entry" => entry_params}) do
     changeset = Entry.changeset(%Entry{}, entry_params)
-
     case Repo.insert(changeset) do
       {:ok, _entry} ->
         conn
@@ -42,7 +41,6 @@ defmodule Nerd.EntryController do
   def update(conn, %{"list_id" => list_id, "id" => id, "entry" => entry_params}) do
     entry = Repo.get!(Entry, id)
     changeset = Entry.changeset(entry, entry_params)
-
     case Repo.update(changeset) do
       {:ok, entry} ->
         conn

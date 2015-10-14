@@ -17,7 +17,7 @@ defmodule Nerd.EntryTest do
     assert changeset.valid?
   end
 
-  test "changeset with invalid attributes", %{list: list} do
+  test "changeset with invalid attributes" do
     changeset = Entry.changeset(%Entry{}, @invalid_attrs)
     refute changeset.valid?
   end
